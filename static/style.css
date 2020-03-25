@@ -1,0 +1,151 @@
+body, html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.bggradient{
+    margin:0px;
+    background: linear-gradient(-45deg,#03fcca,#03fce7, #03ebfc, #03befc );
+    background-size: 400% 400%;
+    -webkit-animation: gradientBG 10s ease infinite;
+    animation: gradientBG 10s ease infinite;
+}
+@-webkit-keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.card{
+    background-color: white; 
+    margin: 20px; padding: 10px;
+    border-radius: 7px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    width: 80%;
+    min-height: 500px;
+}
+@media only screen and (max-width: 800px) {
+    .card{
+        width: 85%;
+    }
+    .hospitalTable{
+        width: 100%;
+    }
+    .hidder{
+        display: none;
+    }
+    .alertcontent{
+        width: 95%;
+    }
+    .alertbtn{
+        width: 80%;
+    }
+}
+.hospitalTable{
+    width: 100%;
+    padding-left: 15px; padding-right: 15px;
+    border-width: 0px;
+    margin:0px;
+}
+.hospitalTable .long{
+    width: 20%;
+}
+.hospitalTable .medium{
+    width: 17%;
+}
+.hospitalTable .small{
+    width: 13%;
+}
+.hospitalTable th{
+    background-color: #03befc;
+    color: white;
+    padding: 10px;
+}
+.hospitalTable td{
+    padding: 10px 5px 10px 5px;
+    background-color: #fafafa;
+}
+.edit{
+    background-color: #03befc;
+    color: white;
+    width: 100%;
+    padding: 4px;
+    border-width: 0px;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+.edit:hover{
+    background-color: #15a6d6;
+    transition-duration: 0.5s;
+}
+
+.customalert{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+.alertcontent {
+    width: 60%;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 7px 7px 7px 7px;
+  }
+.alertbtn{
+    border-width: 0px;
+    width: 20%;
+    padding: 7px;
+    color: #fefefe;
+    border-radius: 7px 7px 7px 7px;
+    background-color: #03befc; transition: background-color 0.5s ease;
+}
+.alertbtn:hover{
+    background-color: #15a6d6; transition: background-color 0.5s ease;
+}
+.forminput{
+    width: 70%;
+    border: 1px solid;
+    border-color: #EAEAEA;
+    height: 17px;
+    padding: 6px;
+    margin:7px;
+    border-radius: 5px 5px 5px 5px;
+    font-family: Helvetica, sans-serif;
+}
+label{
+    width: 25%;
+}
+.forminput:hover{
+    background-color: #FCFCFC;
+    border-color:#5FC9F8;
+    transition: background-color 0.5s ease;
+    transition: border-color 0.5s ease;
+}
+.newhospital{
+    border-width: 0px;
+    width: 150px;
+    padding: 7px;
+    color: #fefefe;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #03befc; transition: background-color 0.5s ease;
+    margin-bottom: 12px;
+}
+.newhospital:hover{
+    background-color: #15a6d6; transition: background-color 0.5s ease;
+}
+.addhospitalarea{
+    text-align: right;
+    padding-right: 15px;
+}

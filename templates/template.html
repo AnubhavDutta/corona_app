@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="SHORTCUT ICON" href="{{ url_for('static',filename='medicine.png') }}" type="image/x-icon" />
+    <link rel="ICON" href="{{ url_for('static',filename='medicine.png') }}" type="image/ico" />
+    <title>Medical Facility Tracking</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body  class="bggradient">
+
+    <div class="container">
+        {%block content%} 
+        {%endblock%}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        function isInputNumber(evt){
+            var ch = String.fromCharCode(evt.which);
+            if(!(/[0-9]/.test(ch))){
+                evt.preventDefault();
+            }
+        }
+        
+        function go(num){
+            name="#name"+num
+            name=$(name).text();
+            loc="#location"+num
+            loc=$(loc).text();
+
+            tbeds="#totalbeds"+num
+            tbeds=$(tbeds).text();
+            abeds="#availablebeds"+num
+            abeds=$(abeds).text();
+
+            ticubeds="#totalicu"+num
+            ticubeds=$(ticubeds).text();
+            aicubeds="#availableicu"+num
+            aicubeds=$(aicubeds).text();
+
+            docs="#doctors"+num
+            docs=$(docs).text();
+            $("#facilityName").text(name);
+            
+            $("#hospnumber").val(num);
+            $("#totalbeds").val(tbeds);
+            $("#availablebeds").val(abeds);
+            $("#totalICU").val(ticubeds);
+            $("#availableICU").val(aicubeds);
+            $("#totdocs").val(docs);
+            $("#modifybox").show("fast","linear");
+        }
+        $("#cancel").on("click", function(){
+            $("#modifybox").hide("fast","linear");
+        });
+
+        $("#saveit").on("click", function(){
+            $("#modifybox").hide("fast","linear");
+        });
+
+        $("#addcancel").on("click", function(){
+            $("#newbox").hide("fast","linear");
+        });
+
+        $("#addsaveit").on("click", function(){
+            $("#newbox").hide("fast","linear");
+        });
+
+        $("#truck").on("click", function(){
+            $("#newbox").show("fast","linear");
+        });
+        $("#addlat").on("click", function(){
+            $("#newbox").show("fast","linear");
+        });
+    </script>
+</body>
+</html>

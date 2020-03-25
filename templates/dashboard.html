@@ -1,0 +1,127 @@
+{%extends "template.html"%}
+{%block content%}
+<center>
+    <div id="modifybox" class="customalert">
+    <div class="alertcontent">
+    <h4 id="facilityName"></h4>
+    <form method="POST" action="/">
+    {{form.hidden_tag()}}
+    <input type="hidden" id="hospnumber" value="">
+    <label>Total Beds</label>
+    {{form.totalbeds(class="forminput",id="totalbeds",onkeypress="isInputNumber(event)")}}
+    <br>
+    <label>Available Beds</label>
+    {{form.availablebeds(class="forminput",id="availablebeds",onkeypress="isInputNumber(event)")}}
+    <br>
+    <label>Total ICU Beds</label>
+    {{form.totalICU(class="forminput",id="totalICU",onkeypress="isInputNumber(event)")}}
+    <br>
+    <label>Available ICU Beds</label>
+    {{form.availableICU(class="forminput",id="availableICU",onkeypress="isInputNumber(event)")}}
+    <br>
+    <label>Number of Doctors</label>
+    {{form.doctors(class="forminput",id="totdocs",onkeypress="isInputNumber(event)")}}
+    <br>
+    {{form.submit(class="alertbtn save",id="saveit",value="Save")}}
+    <button id="cancel" class="alertbtn cancel">Cancel</button>
+    </form>
+    </div>
+    </div>
+
+    <div id="newbox" class="customalert">
+        <div class="alertcontent">
+        <h4>Add New Hospital</h4>
+        <label>Facility Name</label>
+        <input type="text" class="forminput" placeholder="Hospital Name" id="addfac">
+        <br>
+        <label>Latitude</label>
+        <input type="text" class="forminput" placeholder="Location Latitude" id="addlat">
+        <br>
+        <label>Longitude</label>
+        <input type="text" class="forminput" placeholder="Location Longitude" id="addlong">
+        <br>
+        <label>Total Beds</label>
+        <input type="text" class="forminput" placeholder="Total Beds" id="addtotalbeds" onkeypress="isInputNumber(event)">
+        <br>
+        <label>Available Beds</label>
+        <input type="text" class="forminput" placeholder="Available Beds" id="addavailablebeds" onkeypress="isInputNumber(event)">
+        <br>
+        <label>Total ICU Beds</label>
+        <input type="text" class="forminput" placeholder="Total ICU Beds" id="addtotalICU" onkeypress="isInputNumber(event)">
+        <br>
+        <label>Available ICU Beds</label>
+        <input type="text" class="forminput" placeholder="Available ICU Beds" id="addavailableICU" onkeypress="isInputNumber(event)">
+        <br>
+        <label>Number of Doctors</label>
+        <input type="text" class="forminput" placeholder="Number of Doctors" id="addtotdocs" onkeypress="isInputNumber(event)">
+        <br>
+        <button id="addsaveit" class="alertbtn save">Save</button>
+        <button id="addcancel" class="alertbtn cancel">Cancel</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <p style="text-align: left; padding: 20px;">
+            This Web Application will help the Government to keep track of the infrastructure 
+            and other medical facilities in Private hospitals. If and when the number of CONVID-19 cases increases, the
+            Government can have access to real time information about the infrastructure and resources and
+            take the appropriate decisions.
+        </p>
+        <div class="addhospitalarea hidder">
+            <button id="truck" class="newhospital"><i class="fa fa-ambulance" aria-hidden="true"></i> &nbsp New Hospital</button>
+        </div>
+        <div style="overflow-x:auto;">
+        <table class="hospitalTable" cellspacing="0">
+            <tr>
+                <th class="long">Facility Name</th>
+                <th class="small hidder">Location</th>
+                <th class="small hidder">Bed Capacity</th>
+                <th class="small">Available Beds</th>
+                <th class="small">Number of Doctors</th>
+                <th class="small hidder">Total ICU Beds</th>
+                <th class="small">Available ICU Beds</th>
+                <th class="medium hidder">Edit</th>
+            </tr>
+            <tr>
+                <div class="hoverable">
+                <td id="name1">KIMS Bhubaneswar</td>
+                <td id="location1" class="hidder">20.2, 85.8</td>
+                <td id="totalbeds1" class="hidder">100</td>
+                <td id="doctors1">53</td>
+                <td id="availablebeds1">42</td>
+                <td id="totalicu1" class="hidder">13</td>
+                <td id="availableicu1">11</td>
+                <td class="hidder"> 
+                    <button onclick="go(1,'KIMS Bhubaneswar')" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> 
+                </td>
+                </div>
+            </tr>
+            <tr>
+                <td>Apollo BSR Hospital</td>
+                <td class="hidder">20.2, 85.8</td>
+                <td class="hidder">130</td>
+                <td>53</td>
+                <td>42</td>
+                <td class="hidder">13</td>
+                <td>11</td>
+                <td class="hidder"> 
+                    <button class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> 
+                </td>
+            </tr>
+            <tr>
+                <td>AMRI Hospital</td>
+                <td class="hidder">20.2, 85.8</td>
+                <td class="hidder">100</td>
+                <td>53</td>
+                <td>42</td>
+                <td class="hidder">13</td>
+                <td>11</td>
+                <td class="hidder"> 
+                    <button class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> 
+                </td>
+            </tr>
+        </table>
+        </div>
+    </div>
+</center>
+{%endblock%}
