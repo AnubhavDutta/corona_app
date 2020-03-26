@@ -28,6 +28,9 @@ body, html {
     min-height: 500px;
 }
 @media only screen and (max-width: 800px) {
+    footer h4{
+        font-size: 8px;
+    }
     .card{
         width: 85%;
     }
@@ -42,6 +45,15 @@ body, html {
     }
     .alertbtn{
         width: 80%;
+    }
+    .forminput{
+        width: 100%;
+    }
+    label{
+        width: 100%;
+    }
+    .error{
+        width: 90%;
     }
 }
 .hospitalTable{
@@ -66,6 +78,7 @@ body, html {
 }
 .hospitalTable td{
     padding: 10px 5px 10px 5px;
+    text-align: center;
     background-color: #fafafa;
 }
 .edit{
@@ -148,4 +161,33 @@ label{
 .addhospitalarea{
     text-align: right;
     padding-right: 15px;
+}
+.error{
+    padding: 10px;
+    color:white;
+    border-radius: 7px;
+    width: 75%;
+    margin:0px;
+    background: linear-gradient(-45deg,#f26f6f,#fa4d4d, #fa644d, #f25824 );
+    background-size: 400% 400%;
+    -webkit-animation: gradientBG 10s ease infinite;
+    animation: gradientBG 10s ease infinite;
+}
+footer{
+    width: 98%;
+    margin: 0px;
+    background-color: red;
+    bottom: 0;
+    padding: 10px;
+    color:white;
+    border-radius: 3px 3px 0px 0px;
+
+    background: linear-gradient(-45deg,#38bfe0,#2dc0ed, #52a1eb, #2da4ed );
+    background-size: 400% 400%;
+    -webkit-animation: gradientBG 10s ease infinite;
+    animation: gradientBG 10s ease infinite;
+}
+footer h4{
+    padding: 0px !important;
+    font-size: 15px;
 }

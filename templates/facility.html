@@ -1,0 +1,67 @@
+{%extends "template.html"%}
+{%block content%}
+<center>
+    <div class="card">
+        <p style="text-align: left; padding: 20px;">
+            By including new Medical Facilities, you are taking a big step in the battle for eradicating Novel Corona Virus.
+            The information provided by you will be an invaluable to the Government and other authorities. Please ensure that the information
+            is correct and valid.
+        </p>
+        <div>
+            <form method="POST" action="/processing/" autocomplete="off">
+            <h4>Add New Hospital</h4>
+            {%if msg%}
+            <div class="error">
+                {{msg}}
+            </div>
+            {%endif%}
+            <label>Facility Name</label>
+            <input type="text" required class="forminput" placeholder="Hospital Name" name="addfac" id="addfac">
+            <br>
+            <label>Latitude</label>
+            <input type="text" required class="forminput" placeholder="Location Latitude" name="lat" id="lat">
+            <br>
+            <label>Longitude</label>
+            <input type="text" required class="forminput" placeholder="Location Longitude" name="long" id="long">
+            <br>
+            <label>Total Beds</label>
+            <input type="number" required class="forminput" placeholder="Total Beds" name="addtotalbeds" id="addtotalbeds" onkeypress="isInputNumber(event)">
+            <br>
+            <label>Available Beds</label>
+            <input type="number" required class="forminput" placeholder="Available Beds" name="addavailablebeds" id="addavailablebeds" onkeypress="isInputNumber(event)">
+            <br>
+            <label>Total ICU Beds</label>
+            <input type="number" required class="forminput" placeholder="Total ICU Beds" name="addtotalICU" id="addtotalICU" onkeypress="isInputNumber(event)">
+            <br>
+            <label>Available ICU Beds</label>
+            <input type="number" required class="forminput" placeholder="Available ICU Beds" name="addavailableICU" id="addavailableICU" onkeypress="isInputNumber(event)">
+            <br>
+            <label>Number of Doctors</label>
+            <input type="number" required class="forminput" placeholder="Number of Doctors" name="addtotdocs" id="addtotdocs" onkeypress="isInputNumber(event)">
+            <br><br><br>
+            <button type="submit" class="alertbtn save">Save</button>
+            </form>
+            <a href="/">
+                <button id="addcancel" class="alertbtn cancel" style="margin-top:15px;">
+                Cancel
+                </button>
+            </a>
+        </div>
+    </div>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } 
+            else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            $("#lat").val(position.coords.latitude);
+            $("#long").val(position.coords.longitude);
+        }
+        getLocation();
+    </script>
+</center>
+{%endblock%}
