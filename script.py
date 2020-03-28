@@ -9,7 +9,6 @@ hospitals=db.hospitals
 global allhopitals
 
 app=Flask(__name__)
-app.config['SECRET_KEY']="helloworld"
 
 @app.route('/',methods=['GET','POST'])
 def home():
