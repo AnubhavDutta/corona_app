@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, flash, url_for, request
-from forms import editHospital
 from pymongo import MongoClient
+import math
 
 client=MongoClient('mongodb://localhost:27017')
 db=client['corona_app']
@@ -16,7 +16,6 @@ def home():
     allhopitals=hospitals.find()
     if request.method=="POST":
         try:
-            
             hosid=int(request.form['hospnumber'])
             
             totalbeds=int(request.form['totalbeds'])
@@ -24,6 +23,7 @@ def home():
             totalICU=int(request.form['totalICU'])
             availableICU=int(request.form['availableICU'])
             totdocs=int(request.form['totdocs'])
+            pw=str(request.form['pw'])
             
             updations={
                 "total_beds":totalbeds,
@@ -32,19 +32,63 @@ def home():
                 "available_ICU":availableICU,
                 "doctors":totdocs
             }
-
+            allhopitals=hospitals.find({'number':hosid}).limit(1)
+            if(allhopitals[0]['key']!=pw):
+                allhopitals=hospitals.find()
+                return render_template("dashboard.html",info=allhopitals)
             newvalues = { "$set": updations}
             hospitals.update_one({'number':hosid}, newvalues)
             allhopitals=hospitals.find()
             return render_template("dashboard.html",info=allhopitals)
         except:
-            return "Galti"
+            allhopitals=hospitals.find()
+            return render_template("dashboard.html",info=allhopitals)
     return render_template("dashboard.html",info=allhopitals)
 
 
 @app.route('/new/',methods=['GET','POST'])
 def newHospital():
     return render_template("facility.html")
+
+def distance(lat1, lat2,long1,long2):
+    ang1=abs(lat1-lat2)
+    ang2=abs(long1-long2)
+    return math.sqrt((ang1**2)+(ang2**2))
+
+@app.route('/nearby/',methods=['GET','POST'])
+def nearby():
+    if request.method=="POST":
+        lat=float(request.form['lat'])
+        lat=round(lat,4)
+        long=float(request.form['long'])
+        long=round(long,4)
+
+        myhopitals=hospitals.find()
+        allhopitals=[]
+        for i in myhopitals:
+            allhopitals=allhopitals+[i]
+        result=[]
+        for g in range(5):
+            index=0
+            minPoint=float('inf')
+            minInd=0
+            minItem=None
+            for i in allhopitals:
+                if(distance(lat, i['lat'] , long , i['long']) <minPoint and i['available_beds']>0):
+                    minPoint=distance(lat, i['lat'] , long , i['long'])
+                    minItem=i
+                    minInd=index
+                index+=1
+            allhopitals=list(allhopitals)
+            
+            del allhopitals[minInd]
+            result=result+[minItem]
+            if(len(allhopitals)<1):
+                break
+        return render_template("dashboard.html",info=result)
+    else:
+        allhopitals=hospitals.find()
+        return render_template("dashboard.html",info=allhopitals)
 
 @app.route('/processing/',methods=['GET','POST'])
 def process():
@@ -66,6 +110,8 @@ def process():
             availableicubeds=int(request.form['addavailableICU'])
             doctors=int(request.form['addtotdocs'])
             case=3
+            pw=str(request.form['mykey'])
+            
             allhopitals=hospitals.find().sort('number',-1).limit(1)
             for i in allhopitals:
                 Num=i['number']+1
@@ -77,7 +123,8 @@ def process():
             "available_beds":availablebeds,
             "total_ICU":icubeds,
             "available_ICU":availableicubeds,
-            "doctors":doctors
+            "doctors":doctors,
+            "key":pw
             }
             result=hospitals.insert_one(item)
             allhopitals=hospitals.find()
@@ -86,10 +133,12 @@ def process():
             message="An error was encountered. Please try again." 
             if case==0:
                 message="The Facility Name entered is not valid. Please try again."
-            if case==1:
+            elif case==1:
                 message="The Latitude and Longitude coordinates entered is/are not valid. Please try again."
-            if case==2:
+            elif case==2:
                 message="One or more fields entered were not acceptable. Please try again."
+            elif (case==3):
+                message="There is something wrong at our end. Try again after sometime."
             return render_template("facility.html", msg=message)
     else:
         return newHospital()

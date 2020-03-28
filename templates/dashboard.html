@@ -21,6 +21,9 @@
     <label>Number of Doctors</label>
     <input type="number" required class="forminput" id="totdocs" name="totdocs" onkeypress="isInputNumber(event)">
     <br>
+    <label>Administrator Key</label>
+    <input type="password" required class="forminput" id="pw" name="pw">
+    <br>
     <button class="alertbtn save" id="saveit" name="saveit" type="submit">Save</button>
     </form>
     <button id="cancel" class="alertbtn cancel" style="margin-top: 7px;">Cancel</button>
@@ -34,7 +37,13 @@
             Government can have access to real time information about the infrastructure and resources and
             take the appropriate decisions.
         </p>
-        <div class="addhospitalarea hidder">
+        
+        <div class="addhospitalarea hidder" id="helpform">
+            <form style="display: inline;" action="/nearby/" type="submit" method="POST">
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden"name="long" id="long">
+            <a href="/nearby/"><button class="helpnow"><i class="fa fa-heartbeat" aria-hidden="true"></i> &nbsp Get Help</button></a>
+            </form>
             <a href="/new/"><button class="newhospital"><i class="fa fa-ambulance" aria-hidden="true"></i> &nbsp New Hospital</button></a>
         </div>
         <div style="overflow-x:auto;">
@@ -68,5 +77,22 @@
         </table>
         </div>
     </div>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } 
+            else { 
+                $("#helpform").hide("fast","linear");
+                $("#lat").val(28.704);
+                $("#long").val(77.102);
+            }
+        }
+        function showPosition(position) {
+            $("#lat").val(position.coords.latitude);
+            $("#long").val(position.coords.longitude);
+        }
+        getLocation();
+    </script>
 </center>
 {%endblock%}

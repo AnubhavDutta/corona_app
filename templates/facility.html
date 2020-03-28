@@ -18,6 +18,9 @@
             <label>Facility Name</label>
             <input type="text" required class="forminput" placeholder="Hospital Name" name="addfac" id="addfac">
             <br>
+            <label>Administrator Key</label>
+            <input type="password" required class="forminput" name="mykey" placeholder="Password Key">
+            <br>
             <label>Latitude</label>
             <input type="text" required class="forminput" placeholder="Location Latitude" name="lat" id="lat">
             <br>
@@ -38,12 +41,13 @@
             <br>
             <label>Number of Doctors</label>
             <input type="number" required class="forminput" placeholder="Number of Doctors" name="addtotdocs" id="addtotdocs" onkeypress="isInputNumber(event)">
+            <br>
             <br><br><br>
             <button type="submit" class="alertbtn save">Save</button>
             </form>
             <a href="/">
                 <button id="addcancel" class="alertbtn cancel" style="margin-top:15px;">
-                Cancel
+                Back
                 </button>
             </a>
         </div>

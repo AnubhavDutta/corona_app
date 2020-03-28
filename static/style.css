@@ -191,3 +191,15 @@ footer h4{
     padding: 0px !important;
     font-size: 15px;
 }
+.helpnow{
+    border-width: 0px;
+    width: 150px;
+    padding: 7px;
+    color: #fefefe;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #e84e2c; transition: background-color 0.5s ease;
+    margin-bottom: 12px;
+}
+.helpnow:hover{
+    background-color: #b03013; transition: background-color 0.5s ease;
+}
