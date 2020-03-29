@@ -85,7 +85,7 @@ def nearby():
             result=result+[minItem]
             if(len(allhopitals)<1):
                 break
-        return render_template("dashboard.html",info=result)
+        return render_template("dashboard.html",info=result, near=True)
     else:
         allhopitals=hospitals.find()
         return render_template("dashboard.html",info=allhopitals)
@@ -144,4 +144,4 @@ def process():
         return newHospital()
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
