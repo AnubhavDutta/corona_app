@@ -1,0 +1,20 @@
+def DecimalToBinary(num): 
+      
+    if num > 1: 
+        DecimalToBinary(num // 2) 
+    print(num % 2, end = '') 
+def set_bit(arr,n):
+    count = 0
+    for i in arr:
+        set_b = 0
+        for x in range(32):
+            i = str(i)
+            if int(bin(i)[2:],2) & 10**x :
+                set_b += 1
+        count = max(count, set_b)
+    return count
+
+arr = []
+for i in range(1,11):
+    arr.append(i)
+print(set_bit(arr, 10))
