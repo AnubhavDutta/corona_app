@@ -1,0 +1,34 @@
+{%extends "template.html"%}
+{%block content%}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<center>
+    <div class="card">
+        <p style="text-align: left; padding: 20px;">
+            This Web Application will help the Government to keep track of the infrastructure
+            and other medical facilities in Private hospitals. If and when the number of CONVID-19 cases increases, the
+            Government can have access to real time information about the infrastructure and resources and
+            take the appropriate decisions.
+        </p>
+        <div style="overflow-x:auto;">
+            <div class="card-columns">
+                {%for i in info%}
+                    <div class="card bg-info" style="word-wrap: break-word;width: auto;height: auto;">
+                        <div class="card-header" id="location{{i['number']}}" style="font-family: monospace;font-size: larger;color: #021;">{{i['name']}}</div>
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">Secondary card title</h5> -->
+                            <ul style="list-style-type:none;">
+                                <li id="totalbeds{{i['number']}}" style="font-size: medium;color: chocolate;">Total Beds: {{i['total_beds']}}</li>
+                                <li id="availableicu{{i['number']}}" style="font-size: medium;color:crimson;">Available Beds: {{i['available_beds']}}</li>
+                                <li id="doctors{{i['number']}}" style="font-size: medium;color: chocolate;">Doctors: {{i['doctors']}}</li>
+                                <li id="availablebeds{{i['number']}}" style="font-size: medium;color: chocolate;">Total ICU: {{i['total_ICU']}}</li>
+                                <li id="available_ICU{{i['number']}}" style="font-size: medium;color: crimson;">
+                                    Available ICU: {{i['available_ICU']}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</center>
+{%endblock%}

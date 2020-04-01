@@ -148,13 +148,25 @@ label{
     transition: background-color 0.5s ease;
     transition: border-color 0.5s ease;
 }
+.showhospital {
+    border-width: 0px;
+    width: 150px;
+    padding: 7px;
+    color: #fefefe;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #03befc;
+    transition: background-color 0.5s ease;
+    margin-bottom: 12px;
+}
+
 .newhospital{
     border-width: 0px;
     width: 150px;
     padding: 7px;
     color: #fefefe;
     border-radius: 3px 3px 3px 3px;
-    background-color: #03befc; transition: background-color 0.5s ease;
+    background-color: #03befc;
+    transition: background-color 0.5s ease;
     margin-bottom: 12px;
 }
 .newhospital:hover{

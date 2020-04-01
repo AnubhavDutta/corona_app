@@ -17,14 +17,12 @@ def home():
     if request.method=="POST":
         try:
             hosid=int(request.form['hospnumber'])
-            
             totalbeds=int(request.form['totalbeds'])
             availablebeds=int(request.form['availablebeds'])
             totalICU=int(request.form['totalICU'])
             availableICU=int(request.form['availableICU'])
             totdocs=int(request.form['totdocs'])
             pw=str(request.form['pw'])
-            
             updations={
                 "total_beds":totalbeds,
                 "available_beds":availablebeds,
@@ -80,7 +78,6 @@ def nearby():
                     minInd=index
                 index+=1
             allhopitals=list(allhopitals)
-            
             del allhopitals[minInd]
             result=result+[minItem]
             if(len(allhopitals)<1):
@@ -111,7 +108,6 @@ def process():
             doctors=int(request.form['addtotdocs'])
             case=3
             pw=str(request.form['mykey'])
-            
             allhopitals=hospitals.find().sort('number',-1).limit(1)
             for i in allhopitals:
                 Num=i['number']+1
@@ -143,5 +139,16 @@ def process():
     else:
         return newHospital()
 
+
+@app.route('/show/', methods=['GET', 'POST'])
+def show():
+    # visualization of data
+    myhopitals=hospitals.find()
+    allhopitals=[]
+    for i in myhopitals:
+        allhopitals = allhopitals + [i]
+    return render_template("showcase.html", info=allhopitals)
+
+
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug= True)
