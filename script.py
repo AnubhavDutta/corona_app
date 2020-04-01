@@ -62,10 +62,10 @@ def nearby():
         lat=round(lat,4)
         long=float(request.form['long'])
         long=round(long,4)
-
         myhopitals=hospitals.find()
         allhopitals=[]
         for i in myhopitals:
+            i['distance']=distance(lat, i['lat'] , long , i['long'])
             allhopitals=allhopitals+[i]
         result=[]
         for g in range(5):
@@ -74,13 +74,12 @@ def nearby():
             minInd=0
             minItem=None
             for i in allhopitals:
-                if(distance(lat, i['lat'] , long , i['long']) <minPoint and i['available_beds']>0):
-                    minPoint=distance(lat, i['lat'] , long , i['long'])
+                if( i['distance'] < minPoint and i['available_beds']>0 ):
+                    minPoint=i['distance']
                     minItem=i
                     minInd=index
                 index+=1
             allhopitals=list(allhopitals)
-            
             del allhopitals[minInd]
             result=result+[minItem]
             if(len(allhopitals)<1):
@@ -142,6 +141,14 @@ def process():
             return render_template("facility.html", msg=message)
     else:
         return newHospital()
+
+@app.route('/show/')
+def show():
+    myhopitals=hospitals.find()
+    allhopitals=[]
+    for i in myhopitals:
+        allhopitals = allhopitals + [i]
+    return render_template("showcase.html", info=allhopitals)
 
 if __name__=="__main__":
     app.run(debug=False)

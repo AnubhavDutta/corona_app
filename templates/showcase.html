@@ -1,0 +1,40 @@
+{%extends "template.html"%}
+{%block content%}
+<center>
+    <div class="card">
+        <p style="text-align: left; padding: 20px;">
+            This Web Application will help the Government to keep track of the infrastructure 
+            and other medical facilities in Private hospitals. If and when the number of COVID-19 cases increases, the
+            Government can have access to real time information about the infrastructure and resources and
+            take the appropriate decisions.
+        </p>
+        <div class="addhospitalarea hidder" id="helpform">
+            <a href="/new/"><button class="newhospital"><i class="fa fa-ambulance" aria-hidden="true"></i> &nbsp New Hospital</button></a>
+        </div>
+        <div style="text-align: left; padding: 20px;">
+            <a href="/" class="revolveBtn">
+                <i class="fa fa-refresh" aria-hidden="true"></i> 
+            </a>
+        </div>
+        <div class="container">
+        {%for i in info%}
+            <div class="responsiveCard">
+                <div class="contentCard">
+                    <div class="datapart">
+                        <table class="cardTable">
+                            <tr><th class="cardhcell">{{i['name']}}</th></tr>
+                            <tr><td class="cardcell"><b>Total Beds:</b> {{i['total_beds']}}</td></tr>
+                            <tr><td class="cardcell"><b>Available Beds:</b>{{i['available_beds']}}</td></tr>
+                            <tr><td class="cardcell"><b>ICU Beds:</b>{{i['total_ICU']}}</td></tr>
+                            <tr><td class="cardcell"><b>Available ICU Beds:</b>{{i['available_ICU']}}</td></tr>
+                            <tr><td class="cardcell"><b>Doctors:</b>{{i['doctors']}}</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+        </div>
+
+    </div>
+</center>
+{%endblock%}

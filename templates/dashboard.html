@@ -33,11 +33,10 @@
     <div class="card">
         <p style="text-align: left; padding: 20px;">
             This Web Application will help the Government to keep track of the infrastructure 
-            and other medical facilities in Private hospitals. If and when the number of CONVID-19 cases increases, the
+            and other medical facilities in Private hospitals. If and when the number of COVID-19 cases increases, the
             Government can have access to real time information about the infrastructure and resources and
             take the appropriate decisions.
         </p>
-        
         <div class="addhospitalarea hidder" id="helpform">
             <form style="display: inline;" action="/nearby/" type="submit" method="POST">
             <input type="hidden" name="lat" id="lat">
@@ -50,6 +49,9 @@
         {%if near%}
             <p>Your nearest health and medical Facilities are displayed below</p>
         {%endif%}
+        <a href="/show/" class="revolveBtn">
+            <i class="fa fa-refresh" aria-hidden="true"></i> 
+        </a>
         </div>
         <div style="overflow-x:auto;">
         <table class="hospitalTable" cellspacing="0">

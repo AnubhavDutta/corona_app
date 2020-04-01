@@ -20,6 +20,7 @@ body, html {
     }
 }
 .card{
+    overflow: hidden;
     background-color: white; 
     margin: 20px; padding: 10px;
     border-radius: 7px;
@@ -204,4 +205,57 @@ footer h4{
 }
 .helpnow:hover{
     background-color: #b03013; transition: background-color 0.5s ease;
+}
+.container{
+    width: 100% !important;
+}
+.responsiveCard{
+    width: 31% !important;
+    padding: 10px;
+    width: 150px;
+    float: left;
+}
+.contentCard{
+    min-height: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition-duration: 1.0s;
+    background: linear-gradient(-45deg,#34eb83,#34ebab, #34ebd0, #69dffa );
+    background-size: 400% 400%;
+}
+.datapart{
+    padding: 10px;
+}
+.cardTable{
+    width: 100%;
+}
+.cardcell{
+    text-align: center !important;
+    color: white;
+    font-weight: lighter !important;
+}
+.cardhcell{
+    text-align: center !important;
+    color: black;
+}
+.contentCard:hover{
+    box-shadow: 4px 8px 10px rgba(0,0,0,0.30), 0 3px 6px rgba(0,0,0,0.25);
+    transition-duration: 1.0s;
+    background: linear-gradient(-45deg,#338cf2,#9f33f2, #7c33f2, #69dffa );
+    background-size: 400% 400%;
+}
+@media only screen and (max-width: 1000px) {
+    .responsiveCard{
+        width: 45% !important;
+    }
+}
+.revolveBtn{
+    font-size: 20px;
+    transition-duration: 0.5s;
+    color: #338cf2;
+}
+.revolveBtn:hover{
+    color: #f2da1f;
+    transition-duration: 0.5s;
 }
