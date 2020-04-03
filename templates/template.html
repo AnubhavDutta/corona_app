@@ -77,6 +77,74 @@
         $("#addlat").on("click", function(){
             $("#newbox").show("fast","linear");
         });
+
+        $("#filterSearch").on("input", function(){
+            inputText=$("#filterSearch").val();
+            document.getElementById("container").innerHTML = "";
+            if(inputText===""){
+                showCards();
+            }else{
+                table=document.createElement('table');
+                table.classList.add('cardTable');
+                item="";
+                empty=0;
+                console.log("Part1");
+                for(i=0; i<List.length; i++){
+                    if (List[i].name.toLowerCase().includes(inputText.toLowerCase())){
+                        console.log("Part2");
+                        empty=1;
+                        item=item+"<div class='responsiveCard'><div class='contentCard'><div class='datapart'><table>";
+                        item=item+"<tr><th class='cardhcell'>"+ List[i].name +"</th></td>";
+                        item=item+"<tr><th class='cardcell'>Total Beds:" + List[i].total_beds + "</th></td>";
+                        item=item+"<tr><th class='cardcell'>Available Beds:" + List[i].available_beds + "</th></td>";
+                        item=item+"<tr><th class='cardcell'>ICU Beds:" + List[i].total_ICU + "</th></td>";
+                        item=item+"<tr><th class='cardcell'>Available ICU Beds:" + List[i].available_ICU + "</th></td>";
+                        item=item+"<tr><th class='cardcell'>Doctors:" + List[i].doctors + "</th></td>";
+                        item=item+"</table></div></div></div>";
+                    }
+                }
+                if(empty==1){
+                    document.getElementById("container").innerHTML = item;
+                }else{
+                    document.getElementById("container").innerHTML = "<center><p style='margin:30px;'>No facilities found</p></center>";
+                }
+                
+            }
+        });
+
+        $("#tableSearch").on("input", function(){
+            inputText=$("#tableSearch").val();
+            document.getElementById("tableArea").innerHTML = "";
+            if(inputText===""){
+                showCards();
+            }else{
+                table=document.createElement('table');
+                table.classList.add('cardTable');
+                item="<table class='hospitalTable' cellspacing='0'><tr><th class='long'>Facility Name</th><th class='small hidder'>Location</th><th class='small hidder'>Bed Capacity</th><th class='small'>Available Beds</th><th class='small'>Number of Doctors</th><th class='small hidder'>Total ICU Beds</th><th class='small'>Available ICU Beds</th><th class='medium hidder'>Edit</th></tr>";
+                for (i=0 ; i<List.length ; i++){
+                    if (List[i].name.toLowerCase().includes(inputText.toLowerCase())){
+                        item=item+ "<tr><div class='hoverable'><td id='name" + List[i].number + "'>"+List[i].name+"</td>";
+                        item=item+"<td id='location"+List[i].number+"' class='hidder'>"+List[i].lat+", "+List[i].long+"</td>";
+                        item=item+"<td id='totalbeds"+List[i].number+"' class='hidder'>"+List[i].total_beds+"</td>";
+                        item=item+"<td id='availableicu"+List[i].number+"' class='hidder'>"+List[i].available_beds+"</td>";
+                        item=item+"<td id='doctors"+List[i].number+"' class='hidder'>"+List[i].doctors+"</td>";
+                        item=item+"<td id='availablebeds"+List[i].number+"' class='hidder'>"+List[i].total_ICU+"</td>";
+                        item=item+"<td id='totalicu"+List[i].number+"' class='hidder'>"+List[i].available_ICU+"</td>";
+                        item=item+"<td class='hidder'>"+ "<button onclick='go("+List[i].number+")' class='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>" +"</td>";
+                        item=item+"</div></tr>";
+                    }
+                }
+                item=item+"</table>";
+                document.getElementById("tableArea").innerHTML = item;
+
+                if(empty==1){
+                    document.getElementById("tableArea").innerHTML = item;
+                }else{
+                    document.getElementById("tableArea").innerHTML = "<center><p style='margin:30px;'>No facilities found</p></center>";
+                }
+                
+            }
+        });
     </script>
 </body>
 </html>

@@ -212,12 +212,11 @@ footer h4{
 .responsiveCard{
     width: 31% !important;
     padding: 10px;
-    width: 150px;
     float: left;
 }
 .contentCard{
-    min-height: 200px;
-    max-height: 200px;
+    min-height: 180px;
+    max-height: 180px;
     border-radius: 8px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     transition-duration: 1.0s;
@@ -249,6 +248,12 @@ footer h4{
     .responsiveCard{
         width: 45% !important;
     }
+    .filterSearch{
+        width: 85% !important;
+    }
+    .tableSearch{
+        width: 85% !important;
+    }
 }
 .revolveBtn{
     font-size: 20px;
@@ -258,4 +263,32 @@ footer h4{
 .revolveBtn:hover{
     color: #f2da1f;
     transition-duration: 0.5s;
+}
+.filterSearch{
+    width: 40%;
+    padding: 7px 13px 7px 13px;
+    border-radius: 9px;
+    border-width:0.5px; transition-duration: 0.5s;
+    border-style: solid; background-color: white;
+    margin-bottom: 25px;
+}
+.filterSearch:hover{
+    background-color: #fefff0; transition-duration: 0.5s;
+}
+.filterSearch:focus{
+    background-color: #fefff0; transition-duration: 0.5s;
+}
+.tableSearch{
+    width: 40%;
+    padding: 7px 13px 7px 13px;
+    border-radius: 9px;
+    border-width:0.5px; transition-duration: 0.5s;
+    border-style: solid; background-color: white;
+    margin-bottom: 25px;
+}
+.tableSearch:hover{
+    background-color: #fefff0; transition-duration: 0.5s;
+}
+.tableSearch:focus{
+    background-color: #fefff0; transition-duration: 0.5s;
 }

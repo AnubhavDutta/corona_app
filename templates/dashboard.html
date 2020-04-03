@@ -53,36 +53,10 @@
             <i class="fa fa-refresh" aria-hidden="true"></i> 
         </a>
         </div>
-        <div style="overflow-x:auto;">
-        <table class="hospitalTable" cellspacing="0">
-            <tr>
-                <th class="long">Facility Name</th>
-                <th class="small hidder">Location</th>
-                <th class="small hidder">Bed Capacity</th>
-                <th class="small">Available Beds</th>
-                <th class="small">Number of Doctors</th>
-                <th class="small hidder">Total ICU Beds</th>
-                <th class="small">Available ICU Beds</th>
-                <th class="medium hidder">Edit</th>
-            </tr>
-            {%for i in info%}
-            <tr>
-                <div class="hoverable">
-                <td id="name{{i['number']}}">{{i['name']}}</td>
-                <td id="location{{i['number']}}" class="hidder">{{i['lat']}}, {{i['long']}}</td>
-                <td id="totalbeds{{i['number']}}" class="hidder">{{i['total_beds']}}</td>
-                <td id="availableicu{{i['number']}}">{{i['available_beds']}}</td>
-                <td id="doctors{{i['number']}}">{{i['doctors']}}</td>
-                <td id="availablebeds{{i['number']}}">{{i['total_ICU']}}</td>
-                <td id="totalicu{{i['number']}}" class="hidder">{{i['available_ICU']}}</td>
-                <td class="hidder"> 
-                    <button onclick='go({{i["number"]}})' class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> 
-                </td>
-                </div>
-            </tr>
-            {%endfor%}
-        </table>
-        </div>
+        <center>
+            <input type="text" id="tableSearch" class="tableSearch" placeholder="Search for hospitals...">
+        </center>
+        <div style="overflow-x:auto;" id="tableArea" class="tableArea"></div>
     </div>
     <script>
         function getLocation() {
@@ -100,6 +74,44 @@
             $("#long").val(position.coords.longitude);
         }
         getLocation();
+
+        List=[];
+        {%for i in info%}
+
+        var hospital = {
+            number: {{i['number']}},
+            name: "{{i['name']}}",
+            lat:{{i['lat']}},
+            long:{{i['long']}},
+            total_beds: {{i['total_beds']}},
+            available_beds: {{i['available_beds']}},
+            total_ICU: {{i['total_ICU']}},
+            available_ICU: {{i['available_ICU']}},
+            doctors: {{i['doctors']}},
+            
+        };
+        List.push(hospital);
+        {% endfor %}
+    
+        function showCards(){
+            table=document.createElement('table');
+            table.classList.add('cardTable');
+            item="<table class='hospitalTable' cellspacing='0'><tr><th class='long'>Facility Name</th><th class='small hidder'>Location</th><th class='small hidder'>Bed Capacity</th><th class='small'>Available Beds</th><th class='small'>Number of Doctors</th><th class='small hidder'>Total ICU Beds</th><th class='small'>Available ICU Beds</th><th class='medium hidder'>Edit</th></tr>";
+            for (i=0 ; i<List.length ; i++){
+                item=item+ "<tr><div class='hoverable'><td id='name" + List[i].number + "'>"+List[i].name+"</td>";
+                item=item+"<td id='location"+List[i].number+"' class='hidder'>"+List[i].lat+", "+List[i].long+"</td>";
+                item=item+"<td id='totalbeds"+List[i].number+"' class='hidder'>"+List[i].total_beds+"</td>";
+                item=item+"<td id='availableicu"+List[i].number+"' class='hidder'>"+List[i].available_beds+"</td>";
+                item=item+"<td id='doctors"+List[i].number+"' class='hidder'>"+List[i].doctors+"</td>";
+                item=item+"<td id='availablebeds"+List[i].number+"' class='hidder'>"+List[i].total_ICU+"</td>";
+                item=item+"<td id='totalicu"+List[i].number+"' class='hidder'>"+List[i].available_ICU+"</td>";
+                item=item+"<td class='hidder'>"+ "<button onclick='go("+List[i].number+")' class='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>" +"</td>";
+                item=item+"</div></tr>";
+            }
+            item=item+"</table>";
+            document.getElementById("tableArea").innerHTML = item;
+        }
+        showCards();
     </script>
 </center>
 {%endblock%}

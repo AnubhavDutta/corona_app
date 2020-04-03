@@ -16,25 +16,68 @@
                 <i class="fa fa-refresh" aria-hidden="true"></i> 
             </a>
         </div>
-        <div class="container">
-        {%for i in info%}
-            <div class="responsiveCard">
-                <div class="contentCard">
-                    <div class="datapart">
-                        <table class="cardTable">
-                            <tr><th class="cardhcell">{{i['name']}}</th></tr>
-                            <tr><td class="cardcell"><b>Total Beds:</b> {{i['total_beds']}}</td></tr>
-                            <tr><td class="cardcell"><b>Available Beds:</b>{{i['available_beds']}}</td></tr>
-                            <tr><td class="cardcell"><b>ICU Beds:</b>{{i['total_ICU']}}</td></tr>
-                            <tr><td class="cardcell"><b>Available ICU Beds:</b>{{i['available_ICU']}}</td></tr>
-                            <tr><td class="cardcell"><b>Doctors:</b>{{i['doctors']}}</td></tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        {%endfor%}
-        </div>
-
+        <center>
+            <input type="text" id="filterSearch" class="filterSearch" placeholder="Search for hospitals...">
+        </center>
+        <div class="container" id="container"></div>
     </div>
 </center>
+<script>
+    List=[];
+    {%for i in info%}
+    var hospital = {
+        number: {{i['number']}},
+        name: "{{i['name']}}",
+        total_beds: {{i['total_beds']}},
+        available_beds: {{i['available_beds']}},
+        total_ICU: {{i['total_ICU']}},
+        available_ICU: {{i['available_ICU']}},
+        doctors: {{i['doctors']}},
+        
+    };
+    List.push(hospital);
+    {% endfor %}
+
+    function showCards(){
+        table=document.createElement('table');
+        table.classList.add('cardTable');
+        item="";
+        for (i=0 ; i<List.length ; i++){
+            item=item+"<div class='responsiveCard'><div class='contentCard'><div class='datapart'><table>";
+            item=item+"<tr><th class='cardhcell'>"+ List[i].name +"</th></td>";
+            item=item+"<tr><th class='cardcell'>Total Beds:" + List[i].total_beds + "</th></td>";
+            item=item+"<tr><th class='cardcell'>Available Beds:" + List[i].available_beds + "</th></td>";
+            item=item+"<tr><th class='cardcell'>ICU Beds:" + List[i].total_ICU + "</th></td>";
+            item=item+"<tr><th class='cardcell'>Available ICU Beds:" + List[i].available_ICU + "</th></td>";
+            item=item+"<tr><th class='cardcell'>Doctors:" + List[i].doctors + "</th></td>";
+            item=item+"</table></div></div></div>";
+        }
+        document.getElementById("container").innerHTML = item;
+    }
+    showCards();
+
+    $("#filterSearch").on("input", function(){
+        inputText=$("#filterSearch").val();
+        document.getElementById("container").innerHTML = "";
+        if(inputText===""){
+            showCards();
+        }else{
+            table=document.createElement('table');
+            table.classList.add('cardTable');
+            item="";
+            for(i=0; i<List.length; i++){
+                if (List[i].name.includes(inputText)){
+                    item=item+"<div class='responsiveCard'><div class='contentCard'><div class='datapart'><table>";
+                    item=item+"<tr><th class='cardhcell'>"+ List[i].name +"</th></td>";
+                    item=item+"<tr><th class='cardcell'>Total Beds:" + List[i].total_beds + "</th></td>";
+                    item=item+"<tr><th class='cardcell'>Available Beds:" + List[i].available_beds + "</th></td>";
+                    item=item+"<tr><th class='cardcell'>ICU Beds:" + List[i].total_ICU + "</th></td>";
+                    item=item+"<tr><th class='cardcell'>Available ICU Beds:" + List[i].available_ICU + "</th></td>";
+                    item=item+"<tr><th class='cardcell'>Doctors:" + List[i].doctors + "</th></td>";
+                    item=item+"</table></div></div></div>";
+                }
+            }
+        }
+    });
+</script>
 {%endblock%}
