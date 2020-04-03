@@ -120,6 +120,7 @@
             }else{
                 table=document.createElement('table');
                 table.classList.add('cardTable');
+                empty=0;
                 item="<table class='hospitalTable' cellspacing='0'><tr><th class='long'>Facility Name</th><th class='small hidder'>Location</th><th class='small hidder'>Bed Capacity</th><th class='small'>Available Beds</th><th class='small'>Number of Doctors</th><th class='small hidder'>Total ICU Beds</th><th class='small'>Available ICU Beds</th><th class='medium hidder'>Edit</th></tr>";
                 for (i=0 ; i<List.length ; i++){
                     if (List[i].name.toLowerCase().includes(inputText.toLowerCase())){
@@ -132,6 +133,7 @@
                         item=item+"<td id='totalicu"+List[i].number+"' class='hidder'>"+List[i].available_ICU+"</td>";
                         item=item+"<td class='hidder'>"+ "<button onclick='go("+List[i].number+")' class='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>" +"</td>";
                         item=item+"</div></tr>";
+                        empty=1;
                     }
                 }
                 item=item+"</table>";
