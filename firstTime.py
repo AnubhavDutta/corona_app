@@ -1,8 +1,9 @@
 from pymongo import MongoClient
-client=MongoClient('mongodb://localhost:27017')
+#client=MongoClient('mongodb://localhost:27017')
+client=MongoClient('mongodb+srv://iamanubhavdutta:iamanubhavdutta@cluster0-mtrid.mongodb.net/test?retryWrites=true&w=majority')
 db=client['corona_app']
 hospitals=db.hospitals
-
+#mongodb+srv://iamanubhavdutta:<password>@cluster0-mtrid.mongodb.net/test?retryWrites=true&w=majority
 item={"number":2,
 "name":"Apollo BSR Bhubaneswar",
 "lat":20.2,

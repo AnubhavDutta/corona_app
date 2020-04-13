@@ -2,7 +2,8 @@ from flask import Flask, render_template, redirect, flash, url_for, request
 from pymongo import MongoClient
 import math
 
-client=MongoClient('mongodb://localhost:27017')
+#client=MongoClient('mongodb://localhost:27017')
+client=MongoClient('mongodb+srv://iamanubhavdutta:iamanubhavdutta@cluster0-mtrid.mongodb.net/test?retryWrites=true&w=majority')
 db=client['corona_app']
 global hospitals
 hospitals=db.hospitals
